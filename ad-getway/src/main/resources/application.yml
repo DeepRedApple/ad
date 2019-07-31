@@ -1,0 +1,22 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: ad-getway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://server1:8000/eureka/
+
+zuul:
+  prefix: /ad
+  routes:
+    sponsor:
+      path: /ad-sponsor/**
+      serviceId: eureke-client-ad-sponsor
+      strip-prefix: false
+    search:
+      path: /ad-search/**
+      serviceId: eureka-client-ad-service
+      strip-prefix: false
